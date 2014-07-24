@@ -2,6 +2,7 @@ package org.tw.aml;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.ParserRuleContext;
 import org.junit.Test;
 import org.tw.aml.antlr4.AMLLexer;
 import org.tw.aml.antlr4.AMLParser;
@@ -10,6 +11,7 @@ import java.io.IOException;
 import java.io.StringReader;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 public class AMLTProductParserTest {
@@ -37,9 +39,12 @@ public class AMLTProductParserTest {
 
     @Test
     public void should_get_product_property_key() throws IOException {
-        final AMLParser.PropertyKeyContext productPropertyKey = getProductPropertyKey("type");
+        assertNodeText(getProductPropertyKey("type"), "type");
+    }
 
-        assertThat(productPropertyKey.getText(), is("type"));
+    @Test
+    public void should_get_product_property_value() throws IOException {
+        assertNodeText(getProductPropertyValue("1234"), "1234");
     }
 
     private AMLParser.ProductContext getProduct(String text) throws IOException {
@@ -54,10 +59,19 @@ public class AMLTProductParserTest {
         return getAmlParser(text).propertyKey();
     }
 
+    private AMLParser.PropertyValueContext getProductPropertyValue(String text) throws IOException {
+        return getAmlParser(text).propertyValue();
+    }
+
     private AMLParser getAmlParser(String text) throws IOException {
         final ANTLRInputStream input = new ANTLRInputStream(new StringReader(text));
         final AMLLexer lexer = new AMLLexer(input);
         final CommonTokenStream tokens = new CommonTokenStream(lexer);
         return new AMLParser(tokens);
+    }
+
+    private void assertNodeText(ParserRuleContext parseTree, String text) {
+        assertThat(parseTree.getText(), is(text));
+        assertThat(parseTree.exception, nullValue());
     }
 }
