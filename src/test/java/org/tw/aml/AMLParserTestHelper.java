@@ -22,6 +22,11 @@ public class AMLParserTestHelper {
         return new AMLParser(tokens);
     }
 
+    public static AMLParser.AmlContext getAml(String text) throws IOException {
+        return getAmlParser(text).aml();
+    }
+
+
     public static void assertNodeText(ParserRuleContext parseTree, String text) {
         assertThat(parseTree.getText(), is(text));
         assertThat(parseTree.exception, nullValue());

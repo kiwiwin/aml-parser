@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.tw.aml.AMLParserTestHelper.getAml;
 import static org.tw.aml.AMLParserTestHelper.getAmlParser;
 
 public class AMLTProductParserTest {
@@ -35,11 +36,6 @@ public class AMLTProductParserTest {
         assertThat(product.property().size(), is(1));
         assertThat(product.property(0).propertyKey().getText(), is("type"));
         assertThat(product.property(0).propertyValue().getText(), is("\"SATA\""));
-    }
-
-
-    private AMLParser.AmlContext getAml(String text) throws IOException {
-        return getAmlParser(text).aml();
     }
 
     private AMLParser.ProductContext getProduct(String text) throws IOException {

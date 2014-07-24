@@ -7,8 +7,7 @@ import java.io.IOException;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.tw.aml.AMLParserTestHelper.assertNodeText;
-import static org.tw.aml.AMLParserTestHelper.getAmlParser;
+import static org.tw.aml.AMLParserTestHelper.*;
 
 public class AMLRuleParserTest {
 
@@ -25,11 +24,6 @@ public class AMLRuleParserTest {
 
         assertThat(aml.productRule().size(), is(2));
     }
-
-    private AMLParser.AmlContext getAml(String text) throws IOException {
-        return getAmlParser(text).aml();
-    }
-
 
     @Test
     public void should_get_rule_number() throws IOException {
