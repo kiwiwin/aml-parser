@@ -28,7 +28,7 @@ public class AMLTProductParserTest {
         final AMLParser.ProductPropertyContext productProperty = getProductProperty("type=\"SATA\";");
 
         assertThat(productProperty.productPropertyKey().getText(), is("type"));
-        assertThat(productProperty.STRING().getText(), is("\"SATA\""));
+        assertThat(productProperty.productPropertyValue().getText(), is("\"SATA\""));
     }
 
     @Test

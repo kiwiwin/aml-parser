@@ -11,9 +11,11 @@ puid : INT ;
 
 productType : ID ;
 
-productProperty : productPropertyKey '=' STRING ';' ;
+productProperty : productPropertyKey '=' productPropertyValue ';' ;
 
 productPropertyKey : ID ;
+
+productPropertyValue : STRING ;
 
 
 BOOLEAN : 'true' | 'false' ;
