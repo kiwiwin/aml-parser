@@ -2,6 +2,13 @@ grammar AML;
 
 aml: ;
 
+
+product : 'puid' puid ;
+
+puid : ID ;
+
+
+
 BOOLEAN : 'true' | 'false' ;
 
 COLOR : 'Black' | 'Gray' | 'Orange' | 'Green' | 'Blue' | 'Yellow' ;
