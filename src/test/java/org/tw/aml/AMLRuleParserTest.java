@@ -11,6 +11,26 @@ import static org.tw.aml.AMLParserTestHelper.assertNodeText;
 import static org.tw.aml.AMLParserTestHelper.getAmlParser;
 
 public class AMLRuleParserTest {
+
+    @Test
+    public void should_get_rules() throws IOException {
+        final AMLParser.AmlContext aml = getAml("rule rule_0446_HC4_DUCT01 extends MinMax {" +
+                "ProductPUIDs = 989, 7393;" +
+                "Max = 2;" +
+                "}" +
+                "rule rule_0555_HC4_DUCT01 extends MinMax {" +
+                "ProductPUIDs = 1000, 3432;" +
+                "Max = 122;" +
+                "}");
+
+        assertThat(aml.productRule().size(), is(2));
+    }
+
+    private AMLParser.AmlContext getAml(String text) throws IOException {
+        return getAmlParser(text).aml();
+    }
+
+
     @Test
     public void should_get_rule_number() throws IOException {
         final AMLParser.ProductRuleContext rule = getRule("rule rule_0446_HC4_DUCT01 extends MinMax {" +
@@ -28,6 +48,7 @@ public class AMLRuleParserTest {
         assertNodeText(rule.property(1).propertyKey(), "Max");
         assertNodeText(rule.property(1).propertyValue(), "2");
     }
+
 
     private AMLParser.ProductRuleContext getRule(String text) throws IOException {
         return getAmlParser(text).productRule();
