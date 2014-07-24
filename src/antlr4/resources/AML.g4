@@ -1,24 +1,17 @@
 grammar AML;
 
-aml:  product* | productRule* ;
+aml:  object* ;
 
-
-product : 'puid' puid 'extends' productType '{'
+object : qualifier objectId 'extends' objectClass '{'
             property+
         '}';
 
-productRule : 'rule' productRuleId 'extends' productRuleType '{'
-            property+
-        '}';
+qualifier : ID ;
 
-productRuleId : ID ;
+objectId : INT | ID ;
 
-productRuleType : ID ;
+objectClass : ID ;
 
-
-puid : INT ;
-
-productType : ID ;
 
 property : propertyKey '=' propertyValue ';' ;
 

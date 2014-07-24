@@ -7,10 +7,11 @@ import java.io.IOException;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.tw.aml.AMLParserTestHelper.assertNodeText;
 import static org.tw.aml.AMLParserTestHelper.getAml;
 import static org.tw.aml.AMLParserTestHelper.getAmlParser;
 
-public class AMLTProductParserTest {
+public class AMLProductParserTest {
 
     @Test
     public void should_get_multi_products() throws IOException {
@@ -21,25 +22,26 @@ public class AMLTProductParserTest {
                 "type=\"BABA\";" +
                 "}");
 
-        assertThat(aml.product().size(), is(2));
+        assertThat(aml.object().size(), is(2));
     }
 
     @Test
     public void should_get_product() throws IOException {
-        final AMLParser.ProductContext product = getProduct("puid 8033 extends Drive {" +
+        final AMLParser.ObjectContext product = getProduct("puid 8033 extends Drive {" +
                 "type=\"SATA\";" +
                 " }");
 
-        assertThat(product.puid().getText(), is("8033"));
-        assertThat(product.productType().getText(), is("Drive"));
+        assertNodeText(product.qualifier(), "puid");
+        assertNodeText(product.objectId(), "8033");
+        assertNodeText(product.objectClass(), "Drive");
 
         assertThat(product.property().size(), is(1));
         assertThat(product.property(0).propertyKey().getText(), is("type"));
         assertThat(product.property(0).propertyValue().getText(), is("\"SATA\""));
     }
 
-    private AMLParser.ProductContext getProduct(String text) throws IOException {
-        return getAmlParser(text).product();
+    private AMLParser.ObjectContext getProduct(String text) throws IOException {
+        return getAmlParser(text).object();
     }
 
 }

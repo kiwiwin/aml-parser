@@ -22,18 +22,18 @@ public class AMLRuleParserTest {
                 "Max = 122;" +
                 "}");
 
-        assertThat(aml.productRule().size(), is(2));
+        assertThat(aml.object().size(), is(2));
     }
 
     @Test
     public void should_get_rule_number() throws IOException {
-        final AMLParser.ProductRuleContext rule = getRule("rule rule_0446_HC4_DUCT01 extends MinMax {" +
+        final AMLParser.ObjectContext rule = getRule("rule rule_0446_HC4_DUCT01 extends MinMax {" +
                 "ProductPUIDs = 989, 7393;" +
                 "Max = 2;" +
                 "}");
 
-        assertNodeText(rule.productRuleId(), "rule_0446_HC4_DUCT01");
-        assertNodeText(rule.productRuleType(), "MinMax");
+        assertNodeText(rule.objectId(), "rule_0446_HC4_DUCT01");
+        assertNodeText(rule.objectClass(), "MinMax");
 
         assertThat(rule.property().size(), is(2));
         assertNodeText(rule.property(0).propertyKey(), "ProductPUIDs");
@@ -44,7 +44,7 @@ public class AMLRuleParserTest {
     }
 
 
-    private AMLParser.ProductRuleContext getRule(String text) throws IOException {
-        return getAmlParser(text).productRule();
+    private AMLParser.ObjectContext getRule(String text) throws IOException {
+        return getAmlParser(text).object();
     }
 }
