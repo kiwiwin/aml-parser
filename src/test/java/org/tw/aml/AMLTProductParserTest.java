@@ -15,9 +15,10 @@ import static org.junit.Assert.assertThat;
 public class AMLTProductParserTest {
     @Test
     public void should_get_product_puid() throws IOException {
-        final AMLParser.ProductContext product = getProduct("puid 8033");
+        final AMLParser.ProductContext product = getProduct("puid 8033 extends Drive");
 
         assertThat(product.puid().getText(), is("8033"));
+        assertThat(product.productType().getText(), is("Drive"));
     }
 
     private AMLParser.ProductContext getProduct(String text) throws IOException {

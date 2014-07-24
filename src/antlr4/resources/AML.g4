@@ -3,9 +3,11 @@ grammar AML;
 aml: ;
 
 
-product : 'puid' puid ;
+product : 'puid' puid 'extends' productType ;
 
-puid : ID ;
+puid : INT ;
+
+productType : ID ;
 
 
 
