@@ -53,6 +53,11 @@ public class AMLTProductParserTest {
     }
 
     @Test
+    public void should_get_product_property_value_as_DOUBLE() throws IOException {
+        assertNodeText(getProductPropertyValue("12.23"), "12.23");
+    }
+
+    @Test
     public void should_get_product_property_value_as_COLOR() throws IOException {
         assertNodeText(getProductPropertyValue("Black"), "Black");
     }
