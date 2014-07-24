@@ -50,6 +50,15 @@ public class AMLTokenTest {
         assertThat(tokens.get(0).getType(), is(AMLLexer.STRING));
     }
 
+    @Test
+    public void should_get_int_token() throws IOException {
+        final List<Token> tokens = getTokens("500");
+
+        assertThat(tokens.size(), is(2));
+        assertThat(tokens.get(0).getText(), is("500"));
+        assertThat(tokens.get(0).getType(), is(AMLLexer.INT));
+    }
+
     private List<Token> getTokens(String text) throws IOException {
         final ANTLRInputStream input = new ANTLRInputStream(new StringReader(text));
         final AMLLexer lexer = new AMLLexer(input);

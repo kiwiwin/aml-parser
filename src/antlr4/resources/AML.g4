@@ -4,6 +4,8 @@ aml: ;
 
 BOOLEAN : 'true' | 'false' ;
 
+INT : DIGIT+ ;
+
 STRING : '"' .*? '"' ;
 
 DOUBLE : DIGIT+ '.' DIGIT*
