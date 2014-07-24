@@ -15,7 +15,12 @@ property : propertyKey '=' propertyValue ';' ;
 
 propertyKey : ID ;
 
-propertyValue : STRING | INT | COLOR | DOUBLE ;
+propertyValue : value | array ;
+
+
+array : value (',' value)* ;
+
+value : STRING | INT | COLOR | DOUBLE ;
 
 
 BOOLEAN : 'true' | 'false' ;

@@ -62,6 +62,17 @@ public class AMLTProductParserTest {
         assertNodeText(getProductPropertyValue("Black"), "Black");
     }
 
+    @Test
+    public void should_get_product_property_value_as_array() throws IOException {
+        final AMLParser.PropertyValueContext productPropertyValue = getProductPropertyValue("Black, Gray, Green");
+
+        assertNodeText(productPropertyValue, "Black,Gray,Green");
+        assertThat(productPropertyValue.array().value().size(), is(3));
+        assertThat(productPropertyValue.array().value(0).getText(), is("Black"));
+        assertThat(productPropertyValue.array().value(1).getText(), is("Gray"));
+        assertThat(productPropertyValue.array().value(2).getText(), is("Green"));
+    }
+
     private AMLParser.ProductContext getProduct(String text) throws IOException {
         return getAmlParser(text).product();
     }
