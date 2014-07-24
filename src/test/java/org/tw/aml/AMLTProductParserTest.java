@@ -15,18 +15,34 @@ import static org.junit.Assert.assertThat;
 public class AMLTProductParserTest {
     @Test
     public void should_get_product_puid() throws IOException {
-        final AMLParser.ProductContext product = getProduct("puid 8033 extends Drive");
+        final AMLParser.ProductContext product = getProduct("puid 8033 extends Drive {" +
+                "type=\"SATA\";" +
+                " }");
 
         assertThat(product.puid().getText(), is("8033"));
         assertThat(product.productType().getText(), is("Drive"));
     }
 
+    @Test
+    public void should_get_product_property() throws IOException {
+        final AMLParser.ProductPropertyContext productProperty = getProductProperty("type=\"SATA\";");
+
+        assertThat(productProperty.ID().getText(), is("type"));
+        assertThat(productProperty.STRING().getText(), is("\"SATA\""));
+    }
+
     private AMLParser.ProductContext getProduct(String text) throws IOException {
+        return getAmlParser(text).product();
+    }
+
+    private AMLParser.ProductPropertyContext getProductProperty(String text) throws IOException {
+        return getAmlParser(text).productProperty();
+    }
+
+    private AMLParser getAmlParser(String text) throws IOException {
         final ANTLRInputStream input = new ANTLRInputStream(new StringReader(text));
         final AMLLexer lexer = new AMLLexer(input);
         final CommonTokenStream tokens = new CommonTokenStream(lexer);
-        final AMLParser parser = new AMLParser(tokens);
-
-        return parser.product();
+        return new AMLParser(tokens);
     }
 }

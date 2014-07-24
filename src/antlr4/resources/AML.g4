@@ -3,12 +3,15 @@ grammar AML;
 aml: ;
 
 
-product : 'puid' puid 'extends' productType ;
+product : 'puid' puid 'extends' productType '{'
+            productProperty+
+        '}';
 
 puid : INT ;
 
 productType : ID ;
 
+productProperty : ID '=' STRING ';' ;
 
 
 BOOLEAN : 'true' | 'false' ;
