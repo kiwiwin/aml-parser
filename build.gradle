@@ -1,0 +1,66 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    antlr4Version = '4.3'
+}
+
+configurations {
+    antlr4
+}
+
+sourceSets {
+    antlr4 {
+        java {
+            srcDir 'src/antlr4/java'
+        }
+        resources {
+            srcDir 'src/antlr4/resources'
+        }
+    }
+}
+
+idea {
+    module {
+        sourceDirs += file('src/antlr4/java')
+        sourceDirs += file('src/antlr4/resources')
+    }
+}
+
+
+dependencies {
+    antlr4 "org.antlr:antlr4:$antlr4Version"
+    antlr4 "org.antlr:antlr4-runtime:$antlr4Version"
+
+    compile "org.antlr:antlr4-runtime:$antlr4Version"
+
+    testCompile "junit:junit:4.11"
+}
+
+task cleanAntlr4(type: Delete) {
+    delete fileTree(dir: "src/antlr4/java/")
+}
+
+task antlr4(type: JavaExec, dependsOn: cleanAntlr4) {
+    main = 'org.antlr.v4.Tool'
+    args = ['AML.g4', '-o', '../java/org/tw/aml/antlr4/', '-package', 'org.tw.aml.antlr4', '-visitor']
+    classpath =  configurations.antlr4
+    workingDir = 'src/antlr4/resources'
+}
+
+compileJava {
+    source 'src/antlr4/java', 'src/main/java'
+}
+
+compileJava.dependsOn antlr4
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.0'
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
