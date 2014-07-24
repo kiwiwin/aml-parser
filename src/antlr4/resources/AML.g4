@@ -7,6 +7,9 @@ product : 'puid' puid 'extends' productType '{'
             property+
         '}';
 
+productRule : 'rule' ID ;
+
+
 puid : INT ;
 
 productType : ID ;
