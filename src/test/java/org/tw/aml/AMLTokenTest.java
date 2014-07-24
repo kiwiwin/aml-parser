@@ -60,6 +60,13 @@ public class AMLTokenTest {
     }
 
     @Test
+    public void should_skip_comment() throws IOException {
+        final List<Token> tokens = getTokens("//500");
+
+        assertThat(tokens.size(), is(1));
+    }
+
+    @Test
     public void should_get_color_token() throws IOException {
         final List<Token> tokens = getTokens("Black Gray Orange Green Blue Yellow");
 

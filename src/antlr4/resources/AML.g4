@@ -27,3 +27,5 @@ ID : [a-zA-Z_0-9]+ ;
 
 fragment
 DIGIT : [0-9] ;
+
+LINE_COMMENT : '//' .*? '\r'? '\n' -> skip ;
