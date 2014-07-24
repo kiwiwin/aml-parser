@@ -41,6 +41,15 @@ public class AMLTokenTest {
         assertThat(tokens.get(0).getType(), is(AMLLexer.BOOLEAN));
     }
 
+    @Test
+    public void should_get_string_token() throws IOException {
+        final List<Token> tokens = getTokens("\"NA\"");
+
+        assertThat(tokens.size(), is(2));
+        assertThat(tokens.get(0).getText(), is("\"NA\""));
+        assertThat(tokens.get(0).getType(), is(AMLLexer.STRING));
+    }
+
     private List<Token> getTokens(String text) throws IOException {
         final ANTLRInputStream input = new ANTLRInputStream(new StringReader(text));
         final AMLLexer lexer = new AMLLexer(input);
