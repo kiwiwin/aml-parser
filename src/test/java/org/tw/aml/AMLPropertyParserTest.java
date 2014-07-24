@@ -17,47 +17,47 @@ import static org.junit.Assert.assertThat;
 public class AMLPropertyParserTest {
 
     @Test
-    public void should_get_product_property() throws IOException {
-        final AMLParser.PropertyContext productProperty = getProperty("type=\"SATA\";");
+    public void should_get_property() throws IOException {
+        final AMLParser.PropertyContext property = getProperty("type=\"SATA\";");
 
-        assertThat(productProperty.propertyKey().getText(), is("type"));
-        assertThat(productProperty.propertyValue().getText(), is("\"SATA\""));
+        assertThat(property.propertyKey().getText(), is("type"));
+        assertThat(property.propertyValue().getText(), is("\"SATA\""));
     }
 
     @Test
-    public void should_get_product_property_key() throws IOException {
-        assertNodeText(getProductPropertyKey("type"), "type");
+    public void should_get_property_key() throws IOException {
+        assertNodeText(getPropertyKey("type"), "type");
     }
 
     @Test
-    public void should_get_product_property_value_as_INT() throws IOException {
-        assertNodeText(getProductPropertyValue("1234"), "1234");
+    public void should_get_property_value_as_INT() throws IOException {
+        assertNodeText(getPropertyValue("1234"), "1234");
     }
 
     @Test
-    public void should_get_product_property_value_as_STRING() throws IOException {
-        assertNodeText(getProductPropertyValue("\"SATA\""), "\"SATA\"");
+    public void should_get_property_value_as_STRING() throws IOException {
+        assertNodeText(getPropertyValue("\"SATA\""), "\"SATA\"");
     }
 
     @Test
-    public void should_get_product_property_value_as_DOUBLE() throws IOException {
-        assertNodeText(getProductPropertyValue("12.23"), "12.23");
+    public void should_get_property_value_as_DOUBLE() throws IOException {
+        assertNodeText(getPropertyValue("12.23"), "12.23");
     }
 
     @Test
-    public void should_get_product_property_value_as_COLOR() throws IOException {
-        assertNodeText(getProductPropertyValue("Black"), "Black");
+    public void should_get_property_value_as_COLOR() throws IOException {
+        assertNodeText(getPropertyValue("Black"), "Black");
     }
 
     @Test
-    public void should_get_product_property_value_as_array() throws IOException {
-        final AMLParser.PropertyValueContext productPropertyValue = getProductPropertyValue("Black, Gray, Green");
+    public void should_get_property_value_as_array() throws IOException {
+        final AMLParser.PropertyValueContext propertyValue = getPropertyValue("Black, Gray, Green");
 
-        assertNodeText(productPropertyValue, "Black,Gray,Green");
-        assertThat(productPropertyValue.array().value().size(), is(3));
-        assertThat(productPropertyValue.array().value(0).getText(), is("Black"));
-        assertThat(productPropertyValue.array().value(1).getText(), is("Gray"));
-        assertThat(productPropertyValue.array().value(2).getText(), is("Green"));
+        assertNodeText(propertyValue, "Black,Gray,Green");
+        assertThat(propertyValue.array().value().size(), is(3));
+        assertThat(propertyValue.array().value(0).getText(), is("Black"));
+        assertThat(propertyValue.array().value(1).getText(), is("Gray"));
+        assertThat(propertyValue.array().value(2).getText(), is("Green"));
     }
 
 
@@ -65,11 +65,11 @@ public class AMLPropertyParserTest {
         return getAmlParser(text).property();
     }
 
-    private AMLParser.PropertyKeyContext getProductPropertyKey(String text) throws IOException {
+    private AMLParser.PropertyKeyContext getPropertyKey(String text) throws IOException {
         return getAmlParser(text).propertyKey();
     }
 
-    private AMLParser.PropertyValueContext getProductPropertyValue(String text) throws IOException {
+    private AMLParser.PropertyValueContext getPropertyValue(String text) throws IOException {
         return getAmlParser(text).propertyValue();
     }
 
