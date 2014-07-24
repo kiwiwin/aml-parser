@@ -29,7 +29,7 @@ public class AMLTProductParserTest {
     }
 
     @Test
-    public void should_get_product_puid() throws IOException {
+    public void should_get_product() throws IOException {
         final AMLParser.ProductContext product = getProduct("puid 8033 extends Drive {" +
                 "type=\"SATA\";" +
                 " }");
@@ -42,49 +42,6 @@ public class AMLTProductParserTest {
         assertThat(product.property(0).propertyValue().getText(), is("\"SATA\""));
     }
 
-    @Test
-    public void should_get_product_property() throws IOException {
-        final AMLParser.PropertyContext productProperty = getProperty("type=\"SATA\";");
-
-        assertThat(productProperty.propertyKey().getText(), is("type"));
-        assertThat(productProperty.propertyValue().getText(), is("\"SATA\""));
-    }
-
-    @Test
-    public void should_get_product_property_key() throws IOException {
-        assertNodeText(getProductPropertyKey("type"), "type");
-    }
-
-    @Test
-    public void should_get_product_property_value_as_INT() throws IOException {
-        assertNodeText(getProductPropertyValue("1234"), "1234");
-    }
-
-    @Test
-    public void should_get_product_property_value_as_STRING() throws IOException {
-        assertNodeText(getProductPropertyValue("\"SATA\""), "\"SATA\"");
-    }
-
-    @Test
-    public void should_get_product_property_value_as_DOUBLE() throws IOException {
-        assertNodeText(getProductPropertyValue("12.23"), "12.23");
-    }
-
-    @Test
-    public void should_get_product_property_value_as_COLOR() throws IOException {
-        assertNodeText(getProductPropertyValue("Black"), "Black");
-    }
-
-    @Test
-    public void should_get_product_property_value_as_array() throws IOException {
-        final AMLParser.PropertyValueContext productPropertyValue = getProductPropertyValue("Black, Gray, Green");
-
-        assertNodeText(productPropertyValue, "Black,Gray,Green");
-        assertThat(productPropertyValue.array().value().size(), is(3));
-        assertThat(productPropertyValue.array().value(0).getText(), is("Black"));
-        assertThat(productPropertyValue.array().value(1).getText(), is("Gray"));
-        assertThat(productPropertyValue.array().value(2).getText(), is("Green"));
-    }
 
     private AMLParser.AmlContext getAml(String text) throws IOException {
         return getAmlParser(text).aml();
@@ -92,18 +49,6 @@ public class AMLTProductParserTest {
 
     private AMLParser.ProductContext getProduct(String text) throws IOException {
         return getAmlParser(text).product();
-    }
-
-    private AMLParser.PropertyContext getProperty(String text) throws IOException {
-        return getAmlParser(text).property();
-    }
-
-    private AMLParser.PropertyKeyContext getProductPropertyKey(String text) throws IOException {
-        return getAmlParser(text).propertyKey();
-    }
-
-    private AMLParser.PropertyValueContext getProductPropertyValue(String text) throws IOException {
-        return getAmlParser(text).propertyValue();
     }
 
     private AMLParser getAmlParser(String text) throws IOException {
