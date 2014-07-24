@@ -23,6 +23,15 @@ public class AMLTokenTest {
         assertThat(tokens.get(0).getType(), is(AMLLexer.ID));
     }
 
+    @Test
+    public void should_get_double_token() throws IOException {
+        final List<Token> tokens = getTokens("12.45");
+
+        assertThat(tokens.size(), is(2));
+        assertThat(tokens.get(0).getText(), is("12.45"));
+        assertThat(tokens.get(0).getType(), is(AMLLexer.DOUBLE));
+    }
+
     private List<Token> getTokens(String text) throws IOException {
         final ANTLRInputStream input = new ANTLRInputStream(new StringReader(text));
         final AMLLexer lexer = new AMLLexer(input);

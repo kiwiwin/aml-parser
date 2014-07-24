@@ -17,9 +17,9 @@ public class AMLParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		ID=1;
+		DOUBLE=1, ID=2;
 	public static final String[] tokenNames = {
-		"<INVALID>", "ID"
+		"<INVALID>", "DOUBLE", "ID"
 	};
 	public static final int
 		RULE_aml = 0;
@@ -86,7 +86,7 @@ public class AMLParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\3\7\4\2\t\2\3\2\3"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\4\7\4\2\t\2\3\2\3"+
 		"\2\3\2\2\2\3\2\2\2\5\2\4\3\2\2\2\4\5\3\2\2\2\5\3\3\2\2\2\2";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
