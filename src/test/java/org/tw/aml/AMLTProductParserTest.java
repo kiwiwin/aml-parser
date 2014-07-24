@@ -15,6 +15,19 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 public class AMLTProductParserTest {
+
+    @Test
+    public void should_get_multi_products() throws IOException {
+        final AMLParser.AmlContext aml = getAml("puid 8033 extends Drive {" +
+                "type=\"SATA\";" +
+                " }" +
+                "puid 8044 extends Drive {" +
+                "type=\"BABA\";" +
+                "}");
+
+        assertThat(aml.product().size(), is(2));
+    }
+
     @Test
     public void should_get_product_puid() throws IOException {
         final AMLParser.ProductContext product = getProduct("puid 8033 extends Drive {" +
@@ -71,6 +84,10 @@ public class AMLTProductParserTest {
         assertThat(productPropertyValue.array().value(0).getText(), is("Black"));
         assertThat(productPropertyValue.array().value(1).getText(), is("Gray"));
         assertThat(productPropertyValue.array().value(2).getText(), is("Green"));
+    }
+
+    private AMLParser.AmlContext getAml(String text) throws IOException {
+        return getAmlParser(text).aml();
     }
 
     private AMLParser.ProductContext getProduct(String text) throws IOException {

@@ -1,6 +1,6 @@
 grammar AML;
 
-aml: ;
+aml: product* ;
 
 
 product : 'puid' puid 'extends' productType '{'
