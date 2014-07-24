@@ -12,9 +12,10 @@ import static org.tw.aml.AMLParserTestHelper.getAmlParser;
 public class AMLRuleParserTest {
     @Test
     public void should_get_rule_number() throws IOException {
-        final AMLParser.ProductRuleContext rule = getRule("rule rule_0446_HC4_DUCT01");
+        final AMLParser.ProductRuleContext rule = getRule("rule rule_0446_HC4_DUCT01 extends MinMax { }");
 
         assertThat(rule.ID().getText(), is("rule_0446_HC4_DUCT01"));
+        assertThat(rule.productRuleType().getText(), is("MinMax"));
     }
 
     private AMLParser.ProductRuleContext getRule(String text) throws IOException {
