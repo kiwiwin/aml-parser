@@ -32,6 +32,15 @@ public class AMLTokenTest {
         assertThat(tokens.get(0).getType(), is(AMLLexer.DOUBLE));
     }
 
+    @Test
+    public void should_get_boolean_token() throws IOException {
+        final List<Token> tokens = getTokens("true");
+
+        assertThat(tokens.size(), is(2));
+        assertThat(tokens.get(0).getText(), is("true"));
+        assertThat(tokens.get(0).getType(), is(AMLLexer.BOOLEAN));
+    }
+
     private List<Token> getTokens(String text) throws IOException {
         final ANTLRInputStream input = new ANTLRInputStream(new StringReader(text));
         final AMLLexer lexer = new AMLLexer(input);

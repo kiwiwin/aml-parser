@@ -2,6 +2,8 @@ grammar AML;
 
 aml: ;
 
+BOOLEAN : 'true' | 'false' ;
+
 DOUBLE : DIGIT+ '.' DIGIT*
          |       '.' DIGIT+
          ;
