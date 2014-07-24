@@ -43,8 +43,18 @@ public class AMLTProductParserTest {
     }
 
     @Test
-    public void should_get_product_property_value() throws IOException {
+    public void should_get_product_property_value_as_INT() throws IOException {
         assertNodeText(getProductPropertyValue("1234"), "1234");
+    }
+
+    @Test
+    public void should_get_product_property_value_as_STRING() throws IOException {
+        assertNodeText(getProductPropertyValue("\"SATA\""), "\"SATA\"");
+    }
+
+    @Test
+    public void should_get_product_property_value_as_COLOR() throws IOException {
+        assertNodeText(getProductPropertyValue("Black"), "Black");
     }
 
     private AMLParser.ProductContext getProduct(String text) throws IOException {

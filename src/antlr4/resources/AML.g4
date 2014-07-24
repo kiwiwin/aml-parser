@@ -15,7 +15,7 @@ property : propertyKey '=' propertyValue ';' ;
 
 propertyKey : ID ;
 
-propertyValue : STRING | INT ;
+propertyValue : STRING | INT | COLOR ;
 
 
 BOOLEAN : 'true' | 'false' ;
