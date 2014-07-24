@@ -7,8 +7,10 @@ product : 'puid' puid 'extends' productType '{'
             property+
         '}';
 
-productRule : 'rule' ID 'extends' productRuleType '{'
+productRule : 'rule' productRuleId 'extends' productRuleType '{'
         '}';
+
+productRuleId : ID ;
 
 productRuleType : ID ;
 

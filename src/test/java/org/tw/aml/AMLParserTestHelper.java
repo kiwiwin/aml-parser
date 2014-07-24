@@ -26,4 +26,5 @@ public class AMLParserTestHelper {
         assertThat(parseTree.getText(), is(text));
         assertThat(parseTree.exception, nullValue());
     }
+
 }
