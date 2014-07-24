@@ -21,6 +21,10 @@ public class AMLTProductParserTest {
 
         assertThat(product.puid().getText(), is("8033"));
         assertThat(product.productType().getText(), is("Drive"));
+
+        assertThat(product.property().size(), is(1));
+        assertThat(product.property(0).propertyKey().getText(), is("type"));
+        assertThat(product.property(0).propertyValue().getText(), is("\"SATA\""));
     }
 
     @Test
