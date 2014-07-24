@@ -4,18 +4,18 @@ aml: ;
 
 
 product : 'puid' puid 'extends' productType '{'
-            productProperty+
+            property+
         '}';
 
 puid : INT ;
 
 productType : ID ;
 
-productProperty : productPropertyKey '=' productPropertyValue ';' ;
+property : propertyKey '=' propertyValue ';' ;
 
-productPropertyKey : ID ;
+propertyKey : ID ;
 
-productPropertyValue : STRING ;
+propertyValue : STRING ;
 
 
 BOOLEAN : 'true' | 'false' ;

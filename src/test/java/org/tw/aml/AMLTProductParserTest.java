@@ -25,15 +25,15 @@ public class AMLTProductParserTest {
 
     @Test
     public void should_get_product_property() throws IOException {
-        final AMLParser.ProductPropertyContext productProperty = getProductProperty("type=\"SATA\";");
+        final AMLParser.PropertyContext productProperty = getProperty("type=\"SATA\";");
 
-        assertThat(productProperty.productPropertyKey().getText(), is("type"));
-        assertThat(productProperty.productPropertyValue().getText(), is("\"SATA\""));
+        assertThat(productProperty.propertyKey().getText(), is("type"));
+        assertThat(productProperty.propertyValue().getText(), is("\"SATA\""));
     }
 
     @Test
     public void should_get_product_property_key() throws IOException {
-        final AMLParser.ProductPropertyKeyContext productPropertyKey = getProductPropertyKey("type");
+        final AMLParser.PropertyKeyContext productPropertyKey = getProductPropertyKey("type");
 
         assertThat(productPropertyKey.getText(), is("type"));
     }
@@ -42,12 +42,12 @@ public class AMLTProductParserTest {
         return getAmlParser(text).product();
     }
 
-    private AMLParser.ProductPropertyContext getProductProperty(String text) throws IOException {
-        return getAmlParser(text).productProperty();
+    private AMLParser.PropertyContext getProperty(String text) throws IOException {
+        return getAmlParser(text).property();
     }
 
-    private AMLParser.ProductPropertyKeyContext getProductPropertyKey(String text) throws IOException {
-        return getAmlParser(text).productPropertyKey();
+    private AMLParser.PropertyKeyContext getProductPropertyKey(String text) throws IOException {
+        return getAmlParser(text).propertyKey();
     }
 
     private AMLParser getAmlParser(String text) throws IOException {
