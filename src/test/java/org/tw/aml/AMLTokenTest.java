@@ -59,6 +59,25 @@ public class AMLTokenTest {
         assertThat(tokens.get(0).getType(), is(AMLLexer.INT));
     }
 
+    @Test
+    public void should_get_color_token() throws IOException {
+        final List<Token> tokens = getTokens("Black Gray Orange Green Blue Yellow");
+
+        assertThat(tokens.size(), is(7));
+
+        assertColor(tokens.get(0), "Black");
+        assertColor(tokens.get(1), "Gray");
+        assertColor(tokens.get(2), "Orange");
+        assertColor(tokens.get(3), "Green");
+        assertColor(tokens.get(4), "Blue");
+        assertColor(tokens.get(5), "Yellow");
+    }
+
+    private void assertColor(Token token, String color) {
+        assertThat(token.getText(), is(color));
+        assertThat(token.getType(), is(AMLLexer.COLOR));
+    }
+
     private List<Token> getTokens(String text) throws IOException {
         final ANTLRInputStream input = new ANTLRInputStream(new StringReader(text));
         final AMLLexer lexer = new AMLLexer(input);

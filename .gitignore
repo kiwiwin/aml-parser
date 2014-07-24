@@ -11,4 +11,4 @@ reports
 generated
 data/
 .vagrant/
-src/antlr4/java/org/tw/bmn/antlr4
+src/antlr4/java/org/tw/aml/antlr4
