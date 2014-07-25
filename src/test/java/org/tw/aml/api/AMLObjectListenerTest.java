@@ -25,6 +25,7 @@ public class AMLObjectListenerTest {
 
         final AMLProperty amlProperty = amlObject.getProperties().get(0);
         assertThat(amlProperty.getKey(), is("type"));
+        assertThat(amlProperty.getValue(), is("\"SATA\""));
     }
 
     private List<AMLObject> getAmlObjects(String text) throws IOException {
