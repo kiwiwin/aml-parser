@@ -1,15 +1,14 @@
-package org.tw.aml;
+package org.tw.aml.antlr4;
 
 import org.junit.Test;
-import org.tw.aml.antlr4.AMLParser;
 
 import java.io.IOException;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.tw.aml.AMLParserTestHelper.assertNodeText;
-import static org.tw.aml.AMLParserTestHelper.getAml;
-import static org.tw.aml.AMLParserTestHelper.getAmlParser;
+import static org.tw.aml.antlr4.AMLParserTestHelper.assertNodeText;
+import static org.tw.aml.antlr4.AMLParserTestHelper.getAml;
+import static org.tw.aml.antlr4.AMLParserTestHelper.getAmlParser;
 
 public class AMLProductParserTest {
 

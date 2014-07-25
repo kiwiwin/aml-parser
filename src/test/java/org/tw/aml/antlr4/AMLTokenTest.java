@@ -1,4 +1,4 @@
-package org.tw.aml;
+package org.tw.aml.antlr4;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
