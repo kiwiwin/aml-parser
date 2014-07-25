@@ -10,6 +10,7 @@ import java.util.List;
 public class AMLObjectListener extends AMLBaseListener {
     private List<AMLObject> objects = new ArrayList<AMLObject>();
     private AMLObject currentObject;
+    private AMLProperty currentProperty;
 
     public List<AMLObject> getObjects() {
         return objects;
@@ -18,6 +19,16 @@ public class AMLObjectListener extends AMLBaseListener {
     @Override
     public void enterObject(@NotNull AMLParser.ObjectContext ctx) {
         currentObject = new AMLObject();
+    }
+
+    @Override
+    public void enterProperty(@NotNull AMLParser.PropertyContext ctx) {
+        currentProperty = new AMLProperty();
+    }
+
+    @Override
+    public void exitProperty(@NotNull AMLParser.PropertyContext ctx) {
+        currentObject.addProperty(currentProperty);
     }
 
     @Override
