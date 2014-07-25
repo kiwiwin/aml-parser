@@ -27,6 +27,11 @@ public class AMLObjectListener extends AMLBaseListener {
     }
 
     @Override
+    public void exitPropertyKey(@NotNull AMLParser.PropertyKeyContext ctx) {
+        currentProperty.setKey(ctx.getText());
+    }
+
+    @Override
     public void exitProperty(@NotNull AMLParser.PropertyContext ctx) {
         currentObject.addProperty(currentProperty);
     }

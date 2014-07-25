@@ -22,6 +22,9 @@ public class AMLObjectListenerTest {
 
         final AMLObject amlObject = amlObjects.get(0);
         assertThat(amlObject.getProperties().size(), is(1));
+
+        final AMLProperty amlProperty = amlObject.getProperties().get(0);
+        assertThat(amlProperty.getKey(), is("type"));
     }
 
     private List<AMLObject> getAmlObjects(String text) throws IOException {
