@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AMLObject {
-
     private List<AMLProperty> properties = new ArrayList<>();
+    private String qualifier;
 
     public List<AMLProperty> getProperties() {
         return properties;
@@ -13,5 +13,13 @@ public class AMLObject {
 
     public void addProperty(AMLProperty property) {
         properties.add(property);
+    }
+
+    public String getQualifier() {
+        return qualifier;
+    }
+
+    public void setQualifier(String qualifier) {
+        this.qualifier = qualifier;
     }
 }
