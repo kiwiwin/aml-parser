@@ -21,6 +21,7 @@ public class AMLObjectListenerTest {
         final AMLObject amlObject = amlObjects.get(0);
         assertThat(amlObject.getProperties().size(), is(1));
         assertThat(amlObject.getQualifier(), is("puid"));
+        assertThat(amlObject.getObjectId(), is("8033"));
         assertThat(amlObject.getObjectClass(), is("Drive"));
 
         final AMLProperty amlProperty = amlObject.getProperties().get(0);

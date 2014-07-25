@@ -7,6 +7,7 @@ public class AMLObject {
     private List<AMLProperty> properties = new ArrayList<>();
     private String qualifier;
     private String objectClass;
+    private String objectId;
 
     public List<AMLProperty> getProperties() {
         return properties;
@@ -30,5 +31,13 @@ public class AMLObject {
 
     public void setObjectClass(String objectClass) {
         this.objectClass = objectClass;
+    }
+
+    public String getObjectId() {
+        return objectId;
+    }
+
+    public void setObjectId(String objectId) {
+        this.objectId = objectId;
     }
 }

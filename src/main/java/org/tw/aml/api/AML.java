@@ -25,6 +25,12 @@ public class AML {
         return objects;
     }
 
+    public AMLObject getObject(String qualifier, String objectId) {
+        return objects.stream()
+                .filter(object -> object.getQualifier().equals(qualifier) && object.getObjectId().equals(objectId))
+                .findFirst().get();
+    }
+
     public static AMLParser getAmlParser(String text) throws IOException {
         final ANTLRInputStream input = new ANTLRInputStream(new StringReader(text));
         final AMLLexer lexer = new AMLLexer(input);
