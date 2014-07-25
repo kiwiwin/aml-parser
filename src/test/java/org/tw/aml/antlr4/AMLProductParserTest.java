@@ -8,7 +8,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.tw.aml.antlr4.AMLParserTestHelper.assertNodeText;
 import static org.tw.aml.antlr4.AMLParserTestHelper.getAml;
-import static org.tw.aml.antlr4.AMLParserTestHelper.getAmlParser;
+import static org.tw.aml.api.AML.getAmlParser;
 
 public class AMLProductParserTest {
 

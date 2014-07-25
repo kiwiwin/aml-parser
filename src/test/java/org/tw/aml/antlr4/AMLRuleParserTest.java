@@ -1,6 +1,7 @@
 package org.tw.aml.antlr4;
 
 import org.junit.Test;
+import org.tw.aml.api.AML;
 
 import java.io.IOException;
 
@@ -44,6 +45,6 @@ public class AMLRuleParserTest {
 
 
     private AMLParser.ObjectContext getRule(String text) throws IOException {
-        return getAmlParser(text).object();
+        return AML.getAmlParser(text).object();
     }
 }

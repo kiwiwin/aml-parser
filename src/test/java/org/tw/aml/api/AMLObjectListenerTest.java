@@ -1,14 +1,13 @@
 package org.tw.aml.api;
 
 import org.junit.Test;
-import org.tw.aml.antlr4.AMLParserTestHelper;
 
 import java.io.IOException;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.tw.aml.antlr4.AMLParserTestHelper.getAmlObjects;
+import static org.tw.aml.api.AML.getAmlObjects;
 
 public class AMLObjectListenerTest {
     @Test
