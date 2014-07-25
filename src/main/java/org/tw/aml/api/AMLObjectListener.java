@@ -6,6 +6,7 @@ import org.tw.aml.antlr4.AMLParser;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AMLObjectListener extends AMLBaseListener {
     private List<AMLObject> objects = new ArrayList<AMLObject>();
@@ -43,7 +44,14 @@ public class AMLObjectListener extends AMLBaseListener {
 
     @Override
     public void exitPropertyValue(@NotNull AMLParser.PropertyValueContext ctx) {
-        currentProperty.setValue(ctx.getText());
+        if (ctx.value() != null) {
+            currentProperty.setValue(ctx.getText());
+        } else {
+            final List<String> array = ctx.array().value().stream()
+                    .map(val -> val.getText())
+                    .collect(Collectors.toList());
+            currentProperty.setValue(array);
+        }
     }
 
     @Override

@@ -30,6 +30,21 @@ public class AMLObjectListenerTest {
     }
 
     @Test
+    public void should_get_property_value_as_list() throws IOException {
+        final List<AMLObject> amlObjects = getAmlObjects("puid 8033 extends Drive {" +
+                "numbers=1, 3, 5;" +
+                " }");
+
+        final AMLObject amlObject = amlObjects.get(0);
+
+        final AMLProperty amlProperty = amlObject.getProperties().get(0);
+
+        final List value = (List) amlProperty.getValue();
+
+        assertThat(value.size(), is(3));
+    }
+
+    @Test
     public void should_get_multi_objects() throws IOException {
         final List<AMLObject> amlObjects = getAmlObjects("puid 8033 extends Drive {" +
                 "type=\"SATA\";" +

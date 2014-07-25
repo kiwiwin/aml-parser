@@ -2,9 +2,9 @@ package org.tw.aml.api;
 
 public class AMLProperty {
     private String key;
-    private String value;
+    private Object value;
 
-    public void setValue(String value) {
+    public void setValue(Object value) {
         this.value = value;
     }
 
@@ -16,7 +16,7 @@ public class AMLProperty {
         return key;
     }
 
-    public String getValue() {
+    public Object getValue() {
         return value;
     }
 }
