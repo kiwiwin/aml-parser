@@ -1,15 +1,14 @@
 package org.tw.aml.api;
 
-import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.junit.Test;
-import org.tw.aml.antlr4.AMLParser;
+import org.tw.aml.antlr4.AMLParserTestHelper;
 
 import java.io.IOException;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.tw.aml.antlr4.AMLParserTestHelper.getAmlParser;
+import static org.tw.aml.antlr4.AMLParserTestHelper.getAmlObjects;
 
 public class AMLObjectListenerTest {
     @Test
@@ -30,13 +29,15 @@ public class AMLObjectListenerTest {
         assertThat(amlProperty.getValue(), is("\"SATA\""));
     }
 
-    private List<AMLObject> getAmlObjects(String text) throws IOException {
-        final AMLParser amlParser = getAmlParser(text);
-        final AMLObjectListener amlListener = new AMLObjectListener();
-        final ParseTreeWalker walker = new ParseTreeWalker();
+    @Test
+    public void should_get_multi_objects() throws IOException {
+        final List<AMLObject> amlObjects = getAmlObjects("puid 8033 extends Drive {" +
+                "type=\"SATA\";" +
+                " }" +
+                "puid 8044 extends Drive {" +
+                "type=\"BABA\";" +
+                "}");
 
-        walker.walk(amlListener, amlParser.aml());
-
-        return amlListener.getObjects();
+        assertThat(amlObjects.size(), is(2));
     }
 }
