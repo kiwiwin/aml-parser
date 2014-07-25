@@ -6,6 +6,7 @@ import java.util.List;
 public class AMLObject {
     private List<AMLProperty> properties = new ArrayList<>();
     private String qualifier;
+    private String objectClass;
 
     public List<AMLProperty> getProperties() {
         return properties;
@@ -21,5 +22,13 @@ public class AMLObject {
 
     public void setQualifier(String qualifier) {
         this.qualifier = qualifier;
+    }
+
+    public String getObjectClass() {
+        return objectClass;
+    }
+
+    public void setObjectClass(String objectClass) {
+        this.objectClass = objectClass;
     }
 }
